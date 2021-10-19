@@ -1,0 +1,23 @@
+---
+version: '3.0'
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    ports:
+     - 9100:9100
+    restart: always
+    volumes:
+      - '/:/host:ro'
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+     - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+     - ./node_exporter-http.yml:/prometheus/scrapers/node_exporter-http.yml:ro
+    command: --config.file=/etc/prometheus/prometheus.yml

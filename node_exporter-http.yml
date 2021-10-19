@@ -1,0 +1,8 @@
+- targets:
+  - node_exporter:9100
+  labels:
+    scraper: nodeexporter
+    service: nodeexporter
+    namespace: prod
+    host: node_exporter
+    service_host: node_exporter
