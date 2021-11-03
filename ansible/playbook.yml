@@ -1,0 +1,8 @@
+#!/usr/bin/ansible-playbook
+---
+
+- hosts: all
+  tags:
+    - test
+  roles:
+    - role: test

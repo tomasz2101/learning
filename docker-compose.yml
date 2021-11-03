@@ -21,3 +21,9 @@ services:
      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
      - ./node_exporter-http.yml:/prometheus/scrapers/node_exporter-http.yml:ro
     command: --config.file=/etc/prometheus/prometheus.yml
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 3000:3000
