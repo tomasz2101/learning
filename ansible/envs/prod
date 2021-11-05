@@ -8,4 +8,4 @@ all:
         ansible_become: yes
         ansible_become_method: sudo
       hosts:
-        20.71.41.93:
+        51.145.226.108:
