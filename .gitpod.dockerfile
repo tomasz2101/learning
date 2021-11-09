@@ -13,6 +13,6 @@ RUN sudo apt-get install -y apt-utils
 
 # install azure cli & terraform & ansible
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-RUN sudo apt-get install terraform
-RUN sudo apt-get install 
+RUN sudo apt-get install -y terraform
+RUN sudo apt-get install -y ansible
 
