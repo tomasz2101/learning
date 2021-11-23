@@ -2,7 +2,5 @@
 ---
 
 - hosts: all
-  tags:
-    - test
   roles:
     - role: test

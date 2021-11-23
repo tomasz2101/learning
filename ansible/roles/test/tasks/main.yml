@@ -1,10 +1,12 @@
 ---
 
-- name: Install Docker's dependencies
+- name: Install installs
   apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
+    name: 
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
     state: latest
 
 - name: Add Docker's public PGP key to the APT keyring
@@ -19,44 +21,12 @@
       https://download.docker.com/linux/ubuntu focal stable
     update_cache: true
 
-- name: Install Docker
+- name: Install installs
   apt:
+    name: 
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
     state: latest
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - python-setuptools
-      - python-dev
 
-- name: Install docker python module
-  pip:
-    name: docker==5.0.0
 
-- name: Install docker compose python module
-  pip:
-    name: docker-compose==1.29.2
-  when: release  == "focal"
-
-- name: remove docker-py
-  pip:
-    name: docker-py
-    state: absent
-
-- name: Make sure that group docker exists
-  group:
-    name: docker
-    state: present
-
-- name: Make sure user is in docker group
-  user:
-    name: "{{ item.name }}"
-    append: yes
-    groups:
-      - docker
-  loop: "{{ ADMIN_USERS }}"
-
-- name: Install docker loki logger
-  command: docker plugin install  grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
-  register: command_result
-  failed_when: "'FAILED' in command_result.stderr"
