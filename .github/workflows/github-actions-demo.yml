@@ -15,9 +15,11 @@ jobs:
           # cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Format
+        working-directory: ./azure
         id: fmt
         run: terraform fmt -check
 
       - name: Terraform Init
+        working-directory: ./azure
         id: init
         run: terraform init
