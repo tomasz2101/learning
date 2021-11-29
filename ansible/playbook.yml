@@ -3,4 +3,6 @@
 
 - hosts: all
   roles:
-    - role: test
+    - role: docker
+    - tag: gitlab
+      role: gitlab

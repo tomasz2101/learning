@@ -1,6 +1,0 @@
-az login
-terraform init
-terraform apply
-    copy password from secret.tfvars
-    enter yes
-    twice because for the first time there is no public ip in the output
