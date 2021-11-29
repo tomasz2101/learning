@@ -23,3 +23,7 @@ jobs:
         working-directory: ./azure
         id: init
         run: terraform init
+      - name: Terraform apply
+        working-directory: ./azure
+        id: apply
+        run: terraform apply
