@@ -1,0 +1,6 @@
+- name: Restart a container
+  docker_container:
+    name: Jenkins
+    image: jenkins/jenkins:lts-jdk11
+    ports:
+     - "8080:8080"

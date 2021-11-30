@@ -4,5 +4,5 @@
 - hosts: all
   roles:
     - role: docker
-    - tag: gitlab
-      role: gitlab
+    - tag: jenkins
+      role: jenkins

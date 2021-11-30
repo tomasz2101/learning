@@ -19,3 +19,5 @@ RUN apt-add-repository --yes --update ppa:ansible/ansible-2.9
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 RUN apt-get install -y terraform
 RUN apt-get install -y ansible
+
+RUN apt install sshpass
