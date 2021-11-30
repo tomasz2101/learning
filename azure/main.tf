@@ -1,27 +1,31 @@
 variable "location" {
   type = string
-  default = "West Europe"
+  default = "Germany West Central"
 }
 
 variable "vm_password" {
   type = string
   sensitive = true
 }
-
-resource "azurerm_resource_group" "myterraformgroup" {
-    name     = "Sandbox1"
-    location = var.location
-    tags = {
-        environment = "Terraform Demo"
-    }
+variable "resource_group" {
+  type = string
+  default = "Learning"
 }
+
+# resource "azurerm_resource_group" "myterraformgroup" {
+#     name     = "Sandbox1"
+#     location = var.location
+#     tags = {
+#         environment = "Terraform Demo"
+#     }
+# }
 
 # # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
     name                = "myVnet"
     address_space       = ["10.0.0.0/16"]
     location            = var.location
-    resource_group_name = azurerm_resource_group.myterraformgroup.name
+    resource_group_name = var.resource_group
     tags = {
         environment = "Terraform Demo"
     }
@@ -30,7 +34,7 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
 # # Create subnet
 resource "azurerm_subnet" "myterraformsubnet" {
     name                 = "mySubnet"
-    resource_group_name  = azurerm_resource_group.myterraformgroup.name
+    resource_group_name  = var.resource_group
     virtual_network_name = azurerm_virtual_network.myterraformnetwork.name
     address_prefixes       = ["10.0.1.0/24"]
 }
@@ -39,7 +43,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
 resource "azurerm_public_ip" "myterraformpublicip" {
     name                         = "myPublicIP"
     location                     = var.location
-    resource_group_name          = azurerm_resource_group.myterraformgroup.name
+    resource_group_name          = var.resource_group
     allocation_method            = "Dynamic"
 
     tags = {
@@ -51,7 +55,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 resource "azurerm_network_interface" "myterraformnic" {
     name                      = "myNIC"
     location                  = var.location
-    resource_group_name       = azurerm_resource_group.myterraformgroup.name
+    resource_group_name       = var.resource_group
 
     ip_configuration {
         name                          = "myNicConfiguration"
@@ -68,7 +72,7 @@ resource "azurerm_network_interface" "myterraformnic" {
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "SandboxVM"
     location              = var.location
-    resource_group_name   = azurerm_resource_group.myterraformgroup.name
+    resource_group_name   = var.resource_group
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
     size                  = "Standard_B1s"
 
