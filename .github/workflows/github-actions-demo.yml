@@ -34,4 +34,6 @@ jobs:
       - name: Terraform apply ?
         working-directory: ./azure
         id: apply
-        run: terraform apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_vm_password: ${{ secrets.VM_PASSWORD }}
