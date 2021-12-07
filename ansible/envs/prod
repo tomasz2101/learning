@@ -9,4 +9,4 @@ all:
         ansible_user: tomasz2101
         ansible_password: 123456aA!
       hosts:
-        51.116.119.108:
+        51.116.119.58:

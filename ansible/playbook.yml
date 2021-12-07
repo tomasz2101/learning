@@ -3,6 +3,8 @@
 
 - hosts: all
   roles:
+    # - tag: azure_vault
+    #   role: azure_vault
     - role: docker
     - tag: jenkins
       role: jenkins

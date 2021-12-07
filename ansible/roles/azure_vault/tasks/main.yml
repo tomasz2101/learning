@@ -1,0 +1,44 @@
+---
+  # - name: Lookup secret from Azure Key Vault
+  #   hosts: localhost
+  #   gather_facts: false
+  #   connection: local
+  #   tasks:
+  #     - name: Look up secret from Azure Key Vault and output to Console
+  #       vars:
+  #         url: 'https://vaultlearning.vault.azure.net'
+  #         secretname: 'test1'
+  #       debug:
+  #         msg: "{{ lookup('azure_keyvault_secret', secretname, vault_url=url) }}"
+
+
+  # - name: Lookup secret from Azure Key Vault
+  #   hosts: localhost
+  #   gather_facts: false
+  #   connection: local
+  #   tasks:
+  #     - name: Test
+  #       vars:
+  #         url: 'https://vaultlearning.vault.azure.net/'
+  #         secretname: "test1"
+  #         client_id: "45ff6715-ed1d-4543-84b0-ee379668e1cf"
+  #         secret: "j.cm1KXO_1rv29bodcmwVR4vTPyVyGK8qd"
+  #         tenant: "df85ff24-2058-457b-a819-58e40d90ce50"
+  #       debug: 
+  #         msg: "the value of this secret is {{lookup('azure_keyvault_secret',secretname,vault_url=url, client_id=client_id, secret=secret, tenant_id=tenant)}}"
+
+
+
+- name: Lookup secret from Azure Key Vault
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: Look up secret when ansible host is general VM
+      vars:
+        url: 'https://vaultlearning.vault.azure.net/'
+        secretname: 'testSecret/version'
+        client_id: "45ff6715-ed1d-4543-84b0-ee379668e1cf"
+        secret: "j.cm1KXO_1rv29bodcmwVR4vTPyVyGK8qd"
+        tenant: "df85ff24-2058-457b-a819-58e40d90ce50"
+      debug: msg="the value of this secret is {{lookup('azure_keyvault_secret',secretname,vault_url=url, cliend_id=client_id, secret=secret, tenant_id=tenant)}}"

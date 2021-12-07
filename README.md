@@ -5,7 +5,7 @@
 2. Start your docker engine (only mac and windows)
 
 3. Execute in repo directory:
-    docker run -it --rm -v $(pwd):/app tomasz2101/learning bash
+    docker run -it -w /app --rm -v $(pwd):/app tomasz2101/learning bash
 
 4. Login to azure portal with CLI: 
     az login 
