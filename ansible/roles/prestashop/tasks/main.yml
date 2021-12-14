@@ -1,0 +1,11 @@
+- name: Copy file with owner and permissions
+  copy:
+    src: ../../../prestashop/docker-compose.yml
+    dest: /tmp/docker-compose.yml
+
+
+
+- name: Run Presta
+  docker_compose:
+    project_src: /tmp/
+    pull: yes

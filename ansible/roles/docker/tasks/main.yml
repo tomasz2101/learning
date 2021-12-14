@@ -26,6 +26,6 @@
     - containerd.io
     - python3-pip
 
-- name: Install bottle python package
+- name: Install docker python module
   pip:
-    name: docker-py
+    name: docker==5.0.0

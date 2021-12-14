@@ -6,5 +6,7 @@
     # - tag: azure_vault
     #   role: azure_vault
     - role: docker
-    - tag: jenkins
-      role: jenkins
+    - tags: prestashop
+      role: prestashop
+    # - tag: jenkins
+    #   role: jenkins

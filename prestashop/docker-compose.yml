@@ -4,21 +4,26 @@ services:
     image: prestashop/prestashop
     container_name: prestashop
     restart: always
-    enviorments:
+    environment:
       - DB_SERVER=mysql
       - DB_USER=root
       - DB_PASSWD=admin
       - PS_INSTALL_DB=1
+      - PS_INSTALL_AUTO=1
     ports:
       - 8080:80
   
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
-    restart: always
-    ports:
-      - 3307:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=admin
+  # mysql:
+  #   image: mysql:5.7
+  #   container_name: mysql
+  #   restart: always
+  #   ports:
+  #     - 3307:3306
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=admin
+  #   # healthcheck:
+  #   #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+  #   #   timeout: 20s
+  #   #   retries: 10
 
 
